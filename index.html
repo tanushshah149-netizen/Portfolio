@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Tanush Shah — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Bebas+Neue&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -28,175 +28,6 @@
     width: 100vw;
     overflow: hidden;
     user-select: none;
-  }
-
-  /* ── TABLET (768px+) ── */
-  @media (min-width: 768px) {
-    body { font-size: 15px; }
-
-    #desktop { max-width: 768px; margin: 0 auto; }
-
-    .hero-name .n1,
-    .hero-name .n2 { font-size: 72px; }
-
-    .hero-role { font-size: 11px; }
-
-    #hero { padding: 20px 24px 0; }
-
-    #stats { padding: 12px 24px; }
-    .stat .sn { font-size: 30px; }
-    .stat .sl { font-size: 10px; }
-
-    #contact-bar { padding: 0 24px 10px; }
-    .cb-text { font-size: 11px; }
-
-    .grid-label { padding: 4px 24px 8px; font-size: 10px; }
-
-    #icon-grid {
-      padding: 4px 24px 12px;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .icon-box { width: 72px; height: 72px; font-size: 32px; }
-    .icon-label { font-size: 11px; }
-
-    #taskbar { height: 40px; }
-    .tb-msg { font-size: 11px; }
-
-    .tb-logo { font-size: 20px; }
-    .tb-clock { font-size: 13px; }
-
-    .window { max-width: 768px; margin: 0 auto; width: 100%; }
-    .win-body { padding: 24px 24px 36px; }
-    .big-title { font-size: 56px; }
-    .body-text { font-size: 15px; }
-    .pcard .pc-text { font-size: 14px; }
-    .pcard .pc-name { font-size: 32px; }
-    .sc .scn { font-size: 48px; }
-    .chip { font-size: 12px; padding: 7px 12px; }
-    .ptag { font-size: 11px; padding: 4px 10px; }
-    .rl-title { font-size: 24px; }
-    .rl-co { font-size: 11px; }
-    .cl-name { font-size: 28px; }
-    .cl-sub { font-size: 11px; }
-    .resume-btn { font-size: 18px; padding: 8px 18px; }
-  }
-
-  /* ── LAPTOP / DESKTOP (1024px+) ── */
-  @media (min-width: 1024px) {
-    body { overflow: auto; height: auto; min-height: 100dvh; }
-
-    #desktop {
-      max-width: 100%;
-      height: auto;
-      min-height: 100dvh;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: stretch;
-      overflow: visible;
-    }
-
-    /* Left column: fixed sidebar */
-    #sidebar-left {
-      width: 340px;
-      min-width: 340px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      position: sticky;
-      top: 0;
-      height: 100dvh;
-      overflow: hidden;
-      border-right: 1px solid #1a1a1a;
-    }
-
-    #main-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      height: 100dvh;
-    }
-
-    /* Move topbar, hero, stats, contact-bar, grid-label, icon-grid, taskbar
-       into sidebar on desktop via JS-added wrapper */
-    #topbar { border-bottom: 1px solid #1a1a1a; }
-
-    #hero { padding: 24px 20px 0; }
-    .hero-name .n1, .hero-name .n2 { font-size: 64px; }
-    .hero-role { font-size: 10px; }
-
-    #stats { padding: 10px 20px; }
-    .stat .sn { font-size: 26px; }
-
-    #contact-bar { padding: 0 20px 8px; }
-    .cb-text { font-size: 10px; }
-
-    #icon-grid {
-      padding: 4px 20px 12px;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      flex: 1;
-    }
-
-    .icon-box { width: 60px; height: 60px; font-size: 26px; }
-    .icon-label { font-size: 9px; }
-
-    /* Overlay becomes right-panel on desktop */
-    #overlay {
-      position: fixed;
-      left: 340px;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.97);
-      backdrop-filter: none;
-      align-items: flex-start;
-      overflow-y: auto;
-    }
-
-    #overlay.open { display: flex; }
-
-    .window {
-      width: 100%;
-      max-height: none;
-      min-height: 100dvh;
-      animation: fadeIn 0.2s ease;
-    }
-
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-    .win-body {
-      padding: 32px 48px 48px;
-      max-width: 860px;
-    }
-
-    .big-title { font-size: 72px; }
-    .body-text { font-size: 15px; }
-    .pcard .pc-text { font-size: 14px; }
-    .pcard .pc-name { font-size: 34px; }
-    .sc .scn { font-size: 52px; }
-    .sc-row { grid-template-columns: repeat(4, 1fr); }
-    .cs-row { grid-template-columns: repeat(4, 1fr); }
-    .chip { font-size: 12px; padding: 7px 12px; }
-    .ptag { font-size: 11px; padding: 5px 10px; }
-    .rl-title { font-size: 26px; }
-    .img-grid { grid-template-columns: repeat(3, 1fr); }
-    .img-grid img { height: 160px !important; }
-    .img-grid img[style*="grid-column"] { grid-column: 1 / -1; height: 220px !important; }
-    .win-bar { height: 50px; }
-    .win-title { font-size: 24px; }
-    .win-x { width: 36px; height: 36px; font-size: 24px; }
-  }
-
-  /* ── LARGE DESKTOP (1440px+) ── */
-  @media (min-width: 1440px) {
-    #sidebar-left { width: 400px; min-width: 400px; }
-    #overlay { left: 400px; }
-    .win-body { padding: 40px 64px 64px; max-width: 1000px; }
-    .big-title { font-size: 88px; }
-    .hero-name .n1, .hero-name .n2 { font-size: 72px; }
   }
 
   body::after {
@@ -962,7 +793,7 @@
     </a>
   </div>
 
-  <div class="grid-label" id="grid-label">— SELECT A FILE —</div>
+  <div class="grid-label">— SELECT A FILE —</div>
 
   <!-- ICON GRID -->
   <div id="icon-grid">
@@ -1571,42 +1402,6 @@
 </div>
 
 <script>
-  // On desktop, wrap elements into sidebar + main layout
-  function setupDesktopLayout() {
-    if (window.innerWidth < 1024) return;
-    if (document.getElementById('sidebar-left')) return;
-
-    const desktop = document.getElementById('desktop');
-    const overlay = document.getElementById('overlay');
-
-    // Create sidebar
-    const sidebar = document.createElement('div');
-    sidebar.id = 'sidebar-left';
-
-    // Move elements into sidebar
-    const elements = ['topbar','hero','stats','contact-bar','grid-label','icon-grid','taskbar'];
-    elements.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) sidebar.appendChild(el);
-    });
-
-    // Create main right area
-    const mainRight = document.createElement('div');
-    mainRight.id = 'main-right';
-    mainRight.appendChild(overlay);
-
-    desktop.appendChild(sidebar);
-    desktop.appendChild(mainRight);
-  }
-
-  // Run on load and resize
-  setupDesktopLayout();
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1024 && !document.getElementById('sidebar-left')) {
-      setupDesktopLayout();
-    }
-  });
-
   function updateClock() {
     const n = new Date();
     document.getElementById('clock').textContent =
