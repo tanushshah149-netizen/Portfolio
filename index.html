@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanush Shah — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Bebas+Neue&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --yellow: #FFE500;
+    --pink: #FF3CAC;
+    --cyan: #00F5FF;
+    --orange: #FF6B2B;
+    --green: #39FF14;
+    --purple: #BF5FFF;
+    --red: #FF4444;
+    --white: #F8F8F8;
+    --gray: #888;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    height: 100dvh;
+    width: 100vw;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* ── TABLET (768px+) ── */
+  @media (min-width: 768px) {
+    body { font-size: 15px; }
+
+    #desktop { max-width: 768px; margin: 0 auto; }
+
+    .hero-name .n1,
+    .hero-name .n2 { font-size: 72px; }
+
+    .hero-role { font-size: 11px; }
+
+    #hero { padding: 20px 24px 0; }
+
+    #stats { padding: 12px 24px; }
+    .stat .sn { font-size: 30px; }
+    .stat .sl { font-size: 10px; }
+
+    #contact-bar { padding: 0 24px 10px; }
+    .cb-text { font-size: 11px; }
+
+    .grid-label { padding: 4px 24px 8px; font-size: 10px; }
+
+    #icon-grid {
+      padding: 4px 24px 12px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .icon-box { width: 72px; height: 72px; font-size: 32px; }
+    .icon-label { font-size: 11px; }
+
+    #taskbar { height: 40px; }
+    .tb-msg { font-size: 11px; }
+
+    .tb-logo { font-size: 20px; }
+    .tb-clock { font-size: 13px; }
+
+    .window { max-width: 768px; margin: 0 auto; width: 100%; }
+    .win-body { padding: 24px 24px 36px; }
+    .big-title { font-size: 56px; }
+    .body-text { font-size: 15px; }
+    .pcard .pc-text { font-size: 14px; }
+    .pcard .pc-name { font-size: 32px; }
+    .sc .scn { font-size: 48px; }
+    .chip { font-size: 12px; padding: 7px 12px; }
+    .ptag { font-size: 11px; padding: 4px 10px; }
+    .rl-title { font-size: 24px; }
+    .rl-co { font-size: 11px; }
+    .cl-name { font-size: 28px; }
+    .cl-sub { font-size: 11px; }
+    .resume-btn { font-size: 18px; padding: 8px 18px; }
+  }
+
+  /* ── LAPTOP / DESKTOP (1024px+) ── */
+  @media (min-width: 1024px) {
+    body { overflow: auto; height: auto; min-height: 100dvh; }
+
+    #desktop {
+      max-width: 100%;
+      height: auto;
+      min-height: 100dvh;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      overflow: visible;
+    }
+
+    /* Left column: fixed sidebar */
+    #sidebar-left {
+      width: 340px;
+      min-width: 340px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100dvh;
+      overflow: hidden;
+      border-right: 1px solid #1a1a1a;
+    }
+
+    #main-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      height: 100dvh;
+    }
+
+    /* Move topbar, hero, stats, contact-bar, grid-label, icon-grid, taskbar
+       into sidebar on desktop via JS-added wrapper */
+    #topbar { border-bottom: 1px solid #1a1a1a; }
+
+    #hero { padding: 24px 20px 0; }
+    .hero-name .n1, .hero-name .n2 { font-size: 64px; }
+    .hero-role { font-size: 10px; }
+
+    #stats { padding: 10px 20px; }
+    .stat .sn { font-size: 26px; }
+
+    #contact-bar { padding: 0 20px 8px; }
+    .cb-text { font-size: 10px; }
+
+    #icon-grid {
+      padding: 4px 20px 12px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      flex: 1;
+    }
+
+    .icon-box { width: 60px; height: 60px; font-size: 26px; }
+    .icon-label { font-size: 9px; }
+
+    /* Overlay becomes right-panel on desktop */
+    #overlay {
+      position: fixed;
+      left: 340px;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.97);
+      backdrop-filter: none;
+      align-items: flex-start;
+      overflow-y: auto;
+    }
+
+    #overlay.open { display: flex; }
+
+    .window {
+      width: 100%;
+      max-height: none;
+      min-height: 100dvh;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    .win-body {
+      padding: 32px 48px 48px;
+      max-width: 860px;
+    }
+
+    .big-title { font-size: 72px; }
+    .body-text { font-size: 15px; }
+    .pcard .pc-text { font-size: 14px; }
+    .pcard .pc-name { font-size: 34px; }
+    .sc .scn { font-size: 52px; }
+    .sc-row { grid-template-columns: repeat(4, 1fr); }
+    .cs-row { grid-template-columns: repeat(4, 1fr); }
+    .chip { font-size: 12px; padding: 7px 12px; }
+    .ptag { font-size: 11px; padding: 5px 10px; }
+    .rl-title { font-size: 26px; }
+    .img-grid { grid-template-columns: repeat(3, 1fr); }
+    .img-grid img { height: 160px !important; }
+    .img-grid img[style*="grid-column"] { grid-column: 1 / -1; height: 220px !important; }
+    .win-bar { height: 50px; }
+    .win-title { font-size: 24px; }
+    .win-x { width: 36px; height: 36px; font-size: 24px; }
+  }
+
+  /* ── LARGE DESKTOP (1440px+) ── */
+  @media (min-width: 1440px) {
+    #sidebar-left { width: 400px; min-width: 400px; }
+    #overlay { left: 400px; }
+    .win-body { padding: 40px 64px 64px; max-width: 1000px; }
+    .big-title { font-size: 88px; }
+    .hero-name .n1, .hero-name .n2 { font-size: 72px; }
+  }
+
+  body::after {
+    content:'';
+    position:fixed;
+    inset:0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 4px);
+    pointer-events:none;
+    z-index:9998;
+  }
+
+  #desktop {
+    width:100%;
+    height:100dvh;
+    display:flex;
+    flex-direction:column;
+    background:
+      radial-gradient(ellipse 70% 40% at 90% 5%, rgba(255,60,172,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 5% 90%, rgba(0,245,255,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(191,95,255,0.04) 0%, transparent 70%),
+      #0a0a0a;
+    overflow:hidden;
+  }
+
+  /* TOPBAR */
+  #topbar {
+    height:28px;
+    background:rgba(0,0,0,0.9);
+    border-bottom:1px solid #1a1a1a;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 12px;
+    flex-shrink:0;
+  }
+
+  .tb-logo {
+    font-family:'VT323',monospace;
+    font-size:16px;
+    color:var(--yellow);
+    letter-spacing:2px;
+  }
+
+  .tb-right {
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  .tb-clock {
+    font-family:'Share Tech Mono',monospace;
+    font-size:10px;
+    color:var(--gray);
+  }
+
+  .tb-dot {
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 6px var(--green);
+    animation:pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* HERO */
+  #hero {
+    padding:12px 14px 0;
+    flex-shrink:0;
+  }
+
+  .hero-tag {
+    font-family:'Share Tech Mono',monospace;
+    font-size:9px;
+    color:var(--cyan);
+    letter-spacing:3px;
+    margin-bottom:3px;
+  }
+
+  .hero-name {
+    font-family:'Bebas Neue',sans-serif;
+    line-height:0.88;
+    letter-spacing:3px;
+  }
+
+  .hero-name .n1 {
+    font-size:50px;
+    color:var(--white);
+  }
+
+  .hero-name .n2 {
+    font-size:50px;
+    color:transparent;
+    -webkit-text-stroke:2px var(--pink);
+  }
+
+  .hero-role {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    color:var(--gray);
+    margin-top:6px;
+    letter-spacing:1px;
+    line-height:1.5;
+  }
+
+  /* RESUME BUTTON */
+  .resume-btn {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:8px;
+    background:var(--yellow);
+    border:none;
+    padding:6px 12px;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:14px;
+    color:#000;
+    letter-spacing:1px;
+    cursor:pointer;
+    text-decoration:none;
+  }
+
+  /* STATS */
+  #stats {
+    display:flex;
+    padding:8px 14px;
+    gap:0;
+    flex-shrink:0;
+  }
+
+  .stat {
+    flex:1;
+    padding:7px 4px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.07);
+    background:rgba(255,255,255,0.02);
+    position:relative;
+  }
+
+  .stat:not(:last-child) { border-right:none; }
+
+  .stat::before {
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:2px;
+  }
+
+  .stat:nth-child(1)::before { background:var(--yellow); }
+  .stat:nth-child(2)::before { background:var(--pink); }
+  .stat:nth-child(3)::before { background:var(--cyan); }
+  .stat:nth-child(4)::before { background:var(--orange); }
+
+  .stat .sn {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:24px;
+    line-height:1;
+  }
+
+  .stat:nth-child(1) .sn { color:var(--yellow); }
+  .stat:nth-child(2) .sn { color:var(--pink); }
+  .stat:nth-child(3) .sn { color:var(--cyan); }
+  .stat:nth-child(4) .sn { color:var(--orange); }
+
+  .stat .sl {
+    font-family:'Share Tech Mono',monospace;
+    font-size:7.5px;
+    color:var(--gray);
+    margin-top:1px;
+  }
+
+  /* CONTACT BAR */
+  #contact-bar {
+    display:flex;
+    gap:0;
+    padding:0 14px 6px;
+    flex-shrink:0;
+  }
+
+  .cb-item {
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    padding:5px 4px;
+    border:1px solid rgba(255,255,255,0.07);
+    text-decoration:none;
+    cursor:pointer;
+    transition:opacity 0.15s;
+  }
+
+  .cb-item:not(:last-child) { border-right:none; }
+  .cb-item:active { opacity:0.6; }
+
+  .cb-icon {
+    font-size:10px;
+  }
+
+  .cb-text {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8px;
+    color:var(--gray);
+    letter-spacing:0.5px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  /* GRID LABEL */
+  .grid-label {
+    padding:2px 14px 5px;
+    font-family:'Share Tech Mono',monospace;
+    font-size:8px;
+    color:#333;
+    letter-spacing:3px;
+    flex-shrink:0;
+  }
+
+  /* ICON GRID */
+  #icon-grid {
+    flex:1;
+    padding:2px 14px 8px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    overflow-y:auto;
+    scrollbar-width:none;
+    align-content:start;
+  }
+
+  #icon-grid::-webkit-scrollbar { display:none; }
+
+  .icon-item {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+    transition:transform 0.12s;
+  }
+
+  .icon-item:active { transform:scale(0.88); }
+
+  .icon-box {
+    width:56px; height:56px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    border:2px solid transparent;
+    transition:all 0.15s;
+    position:relative;
+  }
+
+  .icon-item:nth-child(1) .icon-box { background:rgba(255,229,0,0.1); border-color:rgba(255,229,0,0.25); }
+  .icon-item:nth-child(2) .icon-box { background:rgba(255,60,172,0.1); border-color:rgba(255,60,172,0.25); }
+  .icon-item:nth-child(3) .icon-box { background:rgba(0,245,255,0.1); border-color:rgba(0,245,255,0.25); }
+  .icon-item:nth-child(4) .icon-box { background:rgba(255,107,43,0.1); border-color:rgba(255,107,43,0.25); }
+  .icon-item:nth-child(5) .icon-box { background:rgba(57,255,20,0.1); border-color:rgba(57,255,20,0.25); }
+  .icon-item:nth-child(6) .icon-box { background:rgba(191,95,255,0.1); border-color:rgba(191,95,255,0.25); }
+  .icon-item:nth-child(7) .icon-box { background:rgba(255,68,68,0.1); border-color:rgba(255,68,68,0.25); }
+  .icon-item:nth-child(8) .icon-box { background:rgba(255,229,0,0.1); border-color:rgba(255,229,0,0.25); }
+
+  .icon-item:active .icon-box { filter:brightness(1.6); }
+
+  .icon-label {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    color:var(--white);
+    text-align:center;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+    line-height:1.2;
+    opacity:0.8;
+  }
+
+  /* TASKBAR */
+  #taskbar {
+    height:32px;
+    background:rgba(0,0,0,0.95);
+    border-top:1px solid #181818;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    flex-shrink:0;
+  }
+
+  .tb-pill {
+    width:5px; height:5px;
+    border-radius:50%;
+  }
+
+  .tb-msg {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8px;
+    color:#333;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+
+  /* OVERLAY */
+  #overlay {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    z-index:100;
+    display:none;
+    align-items:flex-end;
+    backdrop-filter:blur(6px);
+  }
+
+  #overlay.open { display:flex; }
+
+  /* WINDOW */
+  .window {
+    width:100%;
+    max-height:88dvh;
+    display:none;
+    flex-direction:column;
+    animation:slideUp 0.28s cubic-bezier(0.16,1,0.3,1);
+    overflow:hidden;
+  }
+
+  .window.active { display:flex; }
+
+  @keyframes slideUp {
+    from { transform:translateY(100%); opacity:0; }
+    to { transform:translateY(0); opacity:1; }
+  }
+
+  .win-bar {
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    flex-shrink:0;
+    border-top:3px solid currentColor;
+  }
+
+  .win-title {
+    font-family:'VT323',monospace;
+    font-size:20px;
+    letter-spacing:2px;
+  }
+
+  .win-x {
+    width:28px; height:28px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'VT323',monospace;
+    font-size:20px;
+    border:none;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+
+  .win-body {
+    overflow-y:auto;
+    flex:1;
+    scrollbar-width:none;
+    padding:16px 14px 28px;
+  }
+
+  .win-body::-webkit-scrollbar { display:none; }
+
+  /* THEMES */
+  .t-yellow { background:#0f0f00; }
+  .t-yellow .win-bar { background:#141400; color:var(--yellow); border-color:var(--yellow); }
+  .t-yellow .win-x { background:var(--yellow); color:#000; }
+
+  .t-pink { background:#0f0008; }
+  .t-pink .win-bar { background:#150010; color:var(--pink); border-color:var(--pink); }
+  .t-pink .win-x { background:var(--pink); color:#fff; }
+
+  .t-cyan { background:#001012; }
+  .t-cyan .win-bar { background:#001518; color:var(--cyan); border-color:var(--cyan); }
+  .t-cyan .win-x { background:var(--cyan); color:#000; }
+
+  .t-orange { background:#100600; }
+  .t-orange .win-bar { background:#160900; color:var(--orange); border-color:var(--orange); }
+  .t-orange .win-x { background:var(--orange); color:#fff; }
+
+  .t-green { background:#001200; }
+  .t-green .win-bar { background:#001800; color:var(--green); border-color:var(--green); }
+  .t-green .win-x { background:var(--green); color:#000; }
+
+  .t-purple { background:#0b0015; }
+  .t-purple .win-bar { background:#10001e; color:var(--purple); border-color:var(--purple); }
+  .t-purple .win-x { background:var(--purple); color:#fff; }
+
+  .t-red { background:#100000; }
+  .t-red .win-bar { background:#160000; color:var(--red); border-color:var(--red); }
+  .t-red .win-x { background:var(--red); color:#fff; }
+
+  /* CONTENT */
+  .eyebrow {
+    font-family:'Share Tech Mono',monospace;
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:0.5;
+    margin-bottom:4px;
+  }
+
+  .big-title {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:44px;
+    line-height:0.88;
+    letter-spacing:2px;
+    margin-bottom:12px;
+  }
+
+  .body-text {
+    font-size:13px;
+    line-height:1.7;
+    color:rgba(248,248,248,0.9);
+    margin-bottom:12px;
+  }
+
+  .band {
+    padding:11px 13px;
+    margin-bottom:12px;
+  }
+
+  .band .bt {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:17px;
+    line-height:1.2;
+    letter-spacing:1px;
+  }
+
+  /* STAT CARDS */
+  .sc-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:14px;
+  }
+
+  .sc {
+    padding:12px;
+    border:1px solid rgba(255,255,255,0.07);
+  }
+
+  .sc .scn {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:40px;
+    line-height:1;
+  }
+
+  .sc .scl {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    opacity:0.45;
+    margin-top:2px;
+    letter-spacing:0.5px;
+  }
+
+  /* PROJECT CARD */
+  .pcard {
+    border:1px solid rgba(255,255,255,0.07);
+    padding:13px;
+    margin-bottom:10px;
+  }
+
+  .pcard .pc-type {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    opacity:0.45;
+    letter-spacing:1px;
+    margin-bottom:4px;
+  }
+
+  .pcard .pc-name {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:26px;
+    color:var(--white);
+    line-height:1;
+    margin-bottom:6px;
+  }
+
+  .pcard .pc-text {
+    font-size:12px;
+    line-height:1.6;
+    color:rgba(248,248,248,0.85);
+  }
+
+  .pcard .pc-tags {
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:9px;
+  }
+
+  .ptag {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    padding:3px 7px;
+    border:1px solid rgba(255,255,255,0.15);
+    color:rgba(255,255,255,0.5);
+  }
+
+  /* CASE STUDY CARD */
+  .cs-card {
+    border:1px solid rgba(255,255,255,0.07);
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+
+  .cs-header {
+    padding:12px 13px 8px;
+  }
+
+  .cs-type {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    opacity:0.4;
+    letter-spacing:1px;
+    margin-bottom:3px;
+  }
+
+  .cs-name {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:28px;
+    color:var(--white);
+    line-height:1;
+    margin-bottom:6px;
+  }
+
+  .cs-img {
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    display:block;
+    background:rgba(255,255,255,0.05);
+  }
+
+  .cs-body {
+    padding:10px 13px 13px;
+  }
+
+  .cs-row {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:10px;
+  }
+
+  .cs-fact {
+    background:rgba(255,255,255,0.04);
+    padding:8px 10px;
+  }
+
+  .cs-fact .cfl {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8px;
+    opacity:0.4;
+    letter-spacing:1px;
+    margin-bottom:3px;
+  }
+
+  .cs-fact .cfv {
+    font-family:'Inter',sans-serif;
+    font-size:11.5px;
+    color:var(--white);
+    opacity:1;
+    line-height:1.4;
+  }
+
+  /* SKILLS */
+  .skill-group {
+    margin-bottom:14px;
+  }
+
+  .sg-label {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    opacity:0.4;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:7px;
+    padding-bottom:5px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+
+  .chips {
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+
+  .chip {
+    font-family:'Share Tech Mono',monospace;
+    font-size:9.5px;
+    padding:5px 9px;
+    border:1px solid rgba(255,255,255,0.12);
+    color:rgba(255,255,255,0.7);
+    letter-spacing:0.3px;
+  }
+
+  .chip.fill {
+    border:none;
+    color:#000;
+    font-weight:700;
+  }
+
+  /* RESUME LINES */
+  .rline {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    gap:8px;
+  }
+
+  .rl-title {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:20px;
+    color:var(--white);
+    line-height:1.1;
+  }
+
+  .rl-co {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    opacity:0.4;
+    letter-spacing:0.5px;
+    margin-top:2px;
+  }
+
+  .rl-date {
+    font-family:'Share Tech Mono',monospace;
+    font-size:8.5px;
+    opacity:0.35;
+    text-align:right;
+    flex-shrink:0;
+    line-height:1.6;
+  }
+
+  /* CONTACT LINKS */
+  .clink {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 13px;
+    margin-bottom:8px;
+    border:1px solid rgba(255,255,255,0.07);
+    text-decoration:none;
+    cursor:pointer;
+    transition:opacity 0.15s;
+  }
+
+  .clink:active { opacity:0.6; }
+
+  .cl-name {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:22px;
+    line-height:1;
+  }
+
+  .cl-sub {
+    font-family:'Share Tech Mono',monospace;
+    font-size:9px;
+    opacity:0.4;
+    margin-top:2px;
+  }
+
+  .cl-arr {
+    font-family:'VT323',monospace;
+    font-size:24px;
+    color:rgba(255,255,255,0.3);
+  }
+
+  .resume-link {
+    font-family:'Share Tech Mono',monospace;
+    font-size:11px;
+    color:var(--yellow);
+    text-decoration:none;
+    letter-spacing:2px;
+    border-bottom:1px solid rgba(255,229,0,0.4);
+    padding-bottom:2px;
+    margin-top:6px;
+    display:inline-block;
+  }
+
+  /* IMAGE GRID */
+  .img-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    margin-bottom:12px;
+  }
+
+  .img-grid img {
+    width:100%;
+    height:100px;
+    object-fit:cover;
+    display:block;
+    background:rgba(255,255,255,0.04);
+  }
+
+  .img-grid img.wide {
+    grid-column:1/-1;
+    height:130px;
+  }
+</style>
+</head>
+<body>
+<div id="desktop">
+
+  <!-- TOPBAR -->
+  <div id="topbar">
+    <div class="tb-logo">TS_OS · 2025</div>
+    <div class="tb-right">
+      <div class="tb-dot"></div>
+      <div class="tb-clock" id="clock">--:--</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-tag">&gt; PORTFOLIO LOADED_</div>
+    <div class="hero-name">
+      <div class="n1">TANUSH</div>
+      <div class="n2">SHAH</div>
+    </div>
+    <div class="hero-role">CAMPAIGN MANAGEMENT · BRAND SOLUTIONS · DIGITAL & INFLUENCER MARKETING · SOCIAL MEDIA</div>
+    <a class="resume-link" href="https://drive.google.com/your-resume-link" target="_blank">Resume ↗</a>
+  </div>
+
+  <!-- STATS -->
+  <div id="stats">
+    <div class="stat">
+      <div class="sn">2K+</div>
+      <div class="sl">LinkedIn</div>
+    </div>
+    <div class="stat">
+      <div class="sn">500+</div>
+      <div class="sl">Impressions</div>
+    </div>
+    <div class="stat">
+      <div class="sn">5+</div>
+      <div class="sl">Case Studies</div>
+    </div>
+    <div class="stat">
+      <div class="sn">3</div>
+      <div class="sl">Brands</div>
+    </div>
+  </div>
+
+  <!-- CONTACT BAR -->
+  <div id="contact-bar">
+    <a class="cb-item" href="mailto:tanushshah1404@gmail.com">
+      <span class="cb-icon">✉</span>
+      <span class="cb-text">tanushshah1404@gmail.com</span>
+    </a>
+    <a class="cb-item" href="tel:8652223193">
+      <span class="cb-icon">📞</span>
+      <span class="cb-text">8652223193</span>
+    </a>
+  </div>
+
+  <div class="grid-label" id="grid-label">— SELECT A FILE —</div>
+
+  <!-- ICON GRID -->
+  <div id="icon-grid">
+    <div class="icon-item" onclick="openWindow('about')">
+      <div class="icon-box">👾</div>
+      <div class="icon-label">About</div>
+    </div>
+    <div class="icon-item" onclick="openWindow('casestudies')">
+      <div class="icon-box">📂</div>
+      <div class="icon-label">Case Studies</div>
+    </div>
+    <div class="icon-item" onclick="openWindow('campaigns')">
+      <div class="icon-box">📊</div>
+      <div class="icon-label">Campaigns</div>
+    </div>
+    <div class="icon-item" onclick="openWindow('digital')">
+      <div class="icon-box">💻</div>
+      <div class="icon-label">Digital &<br>Content</div>
+    </div>
+    <div class="icon-item" onclick="openWindow('influencer')">
+      <div class="icon-box">🎯</div>
+      <div class="icon-label">Influencer</div>
+    </div>
+    <div class="icon-item" onclick="openWindow('creative')">
+      <div class="icon-box">🎨</div>
+      <div class="icon-label">Creative<br>Work</div>
+    </div>
+    <div class="icon-item" onclick="openWindow('resume')">
+      <div class="icon-box">📁</div>
+      <div class="icon-label">Resume &<br>Skills</div>
+    </div>
+    <div class="icon-item" onclick="openWindow('contact')">
+      <div class="icon-box">📡</div>
+      <div class="icon-label">Contact</div>
+    </div>
+  </div>
+
+  <!-- TASKBAR -->
+  <div id="taskbar">
+    <div class="tb-pill" style="background:var(--yellow);box-shadow:0 0 5px var(--yellow)"></div>
+    <div class="tb-msg">Open for opportunities</div>
+    <div class="tb-pill" style="background:var(--pink);box-shadow:0 0 5px var(--pink)"></div>
+  </div>
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="handleOverlayClick(event)">
+
+  <!-- ABOUT -->
+  <div class="window t-yellow" id="win-about">
+    <div class="win-bar">
+      <span class="win-title">ABOUT.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--yellow)">Who I Am</div>
+      <div class="big-title" style="color:var(--yellow)">TANUSH<br>SHAH</div>
+      <div class="body-text">BMS Marketing graduate from Thakur College, Mumbai. Built real campaigns for real brands — Zepto and Glenmark — at a Mumbai digital agency. Currently driving digital growth and brand presence at Troy Groups as a Marketing Executive.</div>
+      <div class="body-text">I move fast, take ownership, and I've done this across agency, brand, and media environments. Not just theory — actual execution with actual results.</div>
+      <div class="band" style="background:var(--yellow)">
+        <div class="bt" style="color:#000">Campaign Management · Brand Solutions · Digital Marketing · Influencer Marketing · Social Media Strategy</div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label" style="color:var(--yellow)">Currently open for</div>
+        <div class="chips">
+          <div class="chip fill" style="background:var(--yellow)">Campaign Management</div>
+          <div class="chip fill" style="background:var(--yellow)">Brand Solutions</div>
+          <div class="chip fill" style="background:var(--yellow)">Digital Marketing</div>
+          <div class="chip fill" style="background:var(--yellow)">Influencer Marketing</div>
+          <div class="chip fill" style="background:var(--yellow)">Social Media</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDIES -->
+  <div class="window t-pink" id="win-casestudies">
+    <div class="win-bar">
+      <span class="win-title">CASE_STUDIES.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--pink)">Proof of Work</div>
+      <div class="big-title" style="color:var(--pink)">REAL<br>RESULTS</div>
+
+      <!-- Case Study 1: Troy LinkedIn -->
+      <div class="cs-card" style="border-color:rgba(255,229,0,0.2)">
+        <div class="cs-header">
+          <div class="cs-type">GROWTH CASE STUDY · TROY GROUPS</div>
+          <div class="cs-name" style="color:var(--yellow)">LinkedIn Growth:<br>0 → 2,000+ Followers</div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-row">
+            <div class="cs-fact">
+              <div class="cfl">RESULT</div>
+              <div class="cfv">2,000+ followers grown from scratch</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">METHOD</div>
+              <div class="cfv">Brand positioning + consistent B2B content</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">ALSO</div>
+              <div class="cfv">500+ early organic impressions on new pages</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">SKILLS</div>
+              <div class="cfv">LinkedIn, organic growth, platform insights</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 2: Troy Website -->
+      <div class="cs-card" style="border-color:rgba(0,245,255,0.2)">
+        <div class="cs-header">
+          <div class="cs-type">WEBSITE CASE STUDY · TROY GROUPS</div>
+          <div class="cs-name" style="color:var(--cyan)">Website Redesign<br>& Performance</div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-row">
+            <div class="cs-fact">
+              <div class="cfl">OBJECTIVE</div>
+              <div class="cfv">Improve clarity, navigation & digital credibility</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">MY ROLE</div>
+              <div class="cfv">Content structuring, layout planning, UX thinking</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">RESULT</div>
+              <div class="cfv">Improved user flow & engagement signals</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">TOOLS</div>
+              <div class="cfv">GA4, content optimisation, digital reporting</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 3: Zepto -->
+      <div class="cs-card" style="border-color:rgba(255,107,43,0.2)">
+        <div class="cs-header">
+          <div class="cs-type">CAMPAIGN CASE STUDY · ZEPTO × OPTIMINASTIC</div>
+          <div class="cs-name" style="color:var(--orange)">Zepto Festive<br>Campaign Strategy</div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-row">
+            <div class="cs-fact">
+              <div class="cfl">OBJECTIVE</div>
+              <div class="cfv">Festive recall for Diwali/Navratri — quick commerce</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">MY ROLE</div>
+              <div class="cfv">Campaign ideation, copy direction, cultural hooks, OOH concepts</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">EXECUTION</div>
+              <div class="cfv">Humor-led, local language, OOH + social-first ideas</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">SKILLS</div>
+              <div class="cfv">Cultural marketing, OOH, copywriting, deck building</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 4: Glenmark -->
+      <div class="cs-card" style="border-color:rgba(57,255,20,0.2)">
+        <div class="cs-header">
+          <div class="cs-type">BRAND CASE STUDY · GLENMARK × OPTIMINASTIC</div>
+          <div class="cs-name" style="color:var(--green)">Glenmark: Healthcare<br>Communication</div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-row">
+            <div class="cs-fact">
+              <div class="cfl">OBJECTIVE</div>
+              <div class="cfv">Brand-safe pharma communication for CPHI Frankfurt</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">MY ROLE</div>
+              <div class="cfv">Social/event creatives, copy direction, visual consistency</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">RESULT</div>
+              <div class="cfv">Campaign-ready assets for CPHI Frankfurt & healthcare social</div>
+            </div>
+            <div class="cs-fact">
+              <div class="cfl">SKILLS</div>
+              <div class="cfv">Pharma comms, brand safety, event marketing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAMPAIGNS -->
+  <div class="window t-cyan" id="win-campaigns">
+    <div class="win-bar">
+      <span class="win-title">CAMPAIGNS.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--cyan)">Campaign Work</div>
+      <div class="big-title" style="color:var(--cyan)">CAMPAIGN<br>RECORD</div>
+
+      <div class="sc-row">
+        <div class="sc" style="border-color:rgba(0,245,255,0.2)">
+          <div class="scn" style="color:var(--cyan)">5+</div>
+          <div class="scl">Campaign & digital case studies</div>
+        </div>
+        <div class="sc" style="border-color:rgba(0,245,255,0.2)">
+          <div class="scn" style="color:var(--cyan)">2K+</div>
+          <div class="scl">LinkedIn followers grown organically</div>
+        </div>
+        <div class="sc" style="border-color:rgba(0,245,255,0.2)">
+          <div class="scn" style="color:var(--cyan)">500+</div>
+          <div class="scl">Early organic impressions</div>
+        </div>
+        <div class="sc" style="border-color:rgba(0,245,255,0.2)">
+          <div class="scn" style="color:var(--cyan)">3</div>
+          <div class="scl">Major brand clients handled</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(255,229,0,0.2)">
+        <div class="pc-type">QUICK COMMERCE · FESTIVE · OOH + SOCIAL</div>
+        <div class="pc-name" style="color:var(--yellow)">ZEPTO</div>
+        <div class="pc-text">Festive campaign ideation for Diwali and Navratri. Humor-led, culturally sharp copy. OOH and social-first execution concepts. Built full campaign deck assets at Optiminastic — from brief to final pitch-ready routes.</div>
+        <div class="pc-tags">
+          <div class="ptag">Cultural Marketing</div>
+          <div class="ptag">OOH Thinking</div>
+          <div class="ptag">Festive Campaigns</div>
+          <div class="ptag">Copywriting</div>
+          <div class="ptag">Deck Building</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(57,255,20,0.2)">
+        <div class="pc-type">PHARMA · HEALTHCARE · EVENT + SOCIAL</div>
+        <div class="pc-name" style="color:var(--green)">GLENMARK</div>
+        <div class="pc-text">Brand-safe social and event communication for CPHI Frankfurt and ongoing healthcare digital campaigns. Balanced clinical trust with engaging visual communication. Maintained strict brand tone throughout.</div>
+        <div class="pc-tags">
+          <div class="ptag">Pharma Communication</div>
+          <div class="ptag">Event Marketing</div>
+          <div class="ptag">Brand Safety</div>
+          <div class="ptag">Visual Consistency</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(191,95,255,0.2)">
+        <div class="pc-type">B2B · EVENTS · BRAND COMMUNICATION</div>
+        <div class="pc-name" style="color:var(--purple)">TROY GROUPS</div>
+        <div class="pc-text">End-to-end digital campaign management. LinkedIn page built from zero to 2,000+ followers. Website restructured for clarity and performance. Riyadh investment event communication built for international audience.</div>
+        <div class="pc-tags">
+          <div class="ptag">B2B Content</div>
+          <div class="ptag">LinkedIn Growth</div>
+          <div class="ptag">Event Comms</div>
+          <div class="ptag">Website Strategy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIGITAL & CONTENT -->
+  <div class="window t-orange" id="win-digital">
+    <div class="win-bar">
+      <span class="win-title">DIGITAL_&_CONTENT.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--orange)">Digital Work</div>
+      <div class="big-title" style="color:var(--orange)">DIGITAL &<br>CONTENT</div>
+      <div class="body-text">Currently running full digital operations at Troy Groups — SEO/SEM, Google Analytics, content strategy, social media, and website performance. Previously built social-first content for a national media brand.</div>
+
+      <div class="sc-row">
+        <div class="sc" style="border-color:rgba(255,107,43,0.3)">
+          <div class="scn" style="color:var(--orange)">2K+</div>
+          <div class="scl">LinkedIn followers built from zero</div>
+        </div>
+        <div class="sc" style="border-color:rgba(255,107,43,0.3)">
+          <div class="scn" style="color:var(--orange)">500+</div>
+          <div class="scl">Organic impressions on new pages</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(255,107,43,0.3)">
+        <div class="pc-type">CURRENT · TROY GROUPS</div>
+        <div class="pc-name" style="color:var(--orange)">Digital Marketing</div>
+        <div class="pc-text">End-to-end digital marketing execution. SEO/SEM keyword research and content optimisation. Google Analytics — tracking traffic, engagement trends, and performance insights. Social media pages launched from scratch across platforms. Website sections restructured for clarity, navigation, and user flow. Coordinated between design, strategy, and business teams to deliver digital assets across multiple touchpoints.</div>
+        <div class="pc-tags">
+          <div class="ptag">SEO / SEM</div>
+          <div class="ptag">Google Analytics (GA4)</div>
+          <div class="ptag">Meta Business Suite</div>
+          <div class="ptag">LinkedIn Strategy</div>
+          <div class="ptag">Content Planning</div>
+          <div class="ptag">Website Strategy</div>
+          <div class="ptag">Social Media Management</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(255,107,43,0.3)">
+        <div class="pc-type">PROJECT · CNBC NEWS18</div>
+        <div class="pc-name" style="color:var(--orange)">Social Media Content Strategy</div>
+        <div class="pc-text">Short-form business and finance content strategy for a national media brand. Developed reels, post ideas, captions, and social-first content concepts using trending hooks and visual storytelling. Monitored real-time news trends and platform behaviour to align content with audience interest and organic engagement potential.</div>
+        <div class="pc-tags">
+          <div class="ptag">Short-form Content</div>
+          <div class="ptag">Reels Planning</div>
+          <div class="ptag">Social-first Strategy</div>
+          <div class="ptag">Trend Monitoring</div>
+          <div class="ptag">Caption Writing</div>
+          <div class="ptag">Platform-native Content</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(255,107,43,0.3)">
+        <div class="pc-type">AGENCY · OPTIMINASTIC</div>
+        <div class="pc-name" style="color:var(--orange)">Campaign Content & Decks</div>
+        <div class="pc-text">Built multiple creative decks and pitch presentations covering audience insights, campaign ideas, content formats, cultural hooks, and platform execution plans. Created platform-specific creatives, captions, and campaign copy for FMCG and pharma clients — adapting tone, brand voice, and visual direction per brief.</div>
+        <div class="pc-tags">
+          <div class="ptag">Pitch Decks</div>
+          <div class="ptag">Campaign Copy</div>
+          <div class="ptag">FMCG Content</div>
+          <div class="ptag">Pharma Content</div>
+          <div class="ptag">Multi-format Creatives</div>
+        </div>
+      </div>
+
+      <div class="band" style="background:var(--orange)">
+        <div class="bt" style="color:#fff">Google Ads · Meta Business Suite · GA4 · SEO/SEM · Instagram · LinkedIn</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFLUENCER -->
+  <div class="window t-green" id="win-influencer">
+    <div class="win-bar">
+      <span class="win-title">INFLUENCER.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--green)">Creator Economy</div>
+      <div class="big-title" style="color:var(--green)">INFLUENCER<br>MARKETING</div>
+      <div class="body-text">Agency execution, startup advisory, and building my own brand in the creator/experience space. I understand influencer marketing from multiple angles — not just how to run campaigns, but how to build communities around them.</div>
+
+      <div class="pcard" style="border-color:rgba(57,255,20,0.25)">
+        <div class="pc-type">STARTUP ADVISORY · ACTIVE</div>
+        <div class="pc-name" style="color:var(--green)">KISMAT</div>
+        <div class="pc-text">Advisor and collaborator for Kismat — a social experience startup in the strangers-meeting space backed by a 400K+ follower influencer. Involved in brand direction, community strategy, and growth thinking. Working closely with the founder on how to build and scale a creator-led community brand.</div>
+        <div class="pc-tags">
+          <div class="ptag">Influencer Advisory</div>
+          <div class="ptag">Creator-led Brand</div>
+          <div class="ptag">Community Strategy</div>
+          <div class="ptag">400K+ Audience</div>
+          <div class="ptag">Brand Direction</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(57,255,20,0.25)">
+        <div class="pc-type">FOUNDER · OWN STARTUP</div>
+        <div class="pc-name" style="color:var(--green)">BOMBAY CIRCLES</div>
+        <div class="pc-text">Built my own social experience brand from scratch. Curated group experiences for strangers in Mumbai, targeting the 20–35 demographic. Handles brand identity, community building, content strategy, and influencer partnerships. Pre-launch with waitlist live.</div>
+        <div class="pc-tags">
+          <div class="ptag">Founder</div>
+          <div class="ptag">Brand Building</div>
+          <div class="ptag">Community Marketing</div>
+          <div class="ptag">Social Experience</div>
+          <div class="ptag">Mumbai</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(57,255,20,0.25)">
+        <div class="pc-type">AGENCY SIDE · OPTIMINASTIC</div>
+        <div class="pc-name" style="color:var(--green)">Creator Campaigns</div>
+        <div class="pc-text">Brief development, creator collaboration support, brand fit evaluation, and campaign coordination across multiple client accounts. Converted client briefs into pitch-ready campaign assets with creator-first thinking.</div>
+        <div class="pc-tags">
+          <div class="ptag">Creator Briefing</div>
+          <div class="ptag">Brand Fit</div>
+          <div class="ptag">Campaign Coordination</div>
+          <div class="ptag">Brief Development</div>
+        </div>
+      </div>
+
+      <div class="pcard" style="border-color:rgba(57,255,20,0.25)">
+        <div class="pc-type">BRAND SIDE · TROY GROUPS</div>
+        <div class="pc-name" style="color:var(--green)">Organic Social Growth</div>
+        <div class="pc-text">Built LinkedIn presence from 0 to 2,000+ followers. No paid boost. Pure organic content strategy, consistent posting, and community engagement. Launched new social pages with 500+ early impressions.</div>
+        <div class="pc-tags">
+          <div class="ptag">Organic Growth</div>
+          <div class="ptag">LinkedIn Strategy</div>
+          <div class="ptag">Content Calendar</div>
+          <div class="ptag">Community Building</div>
+        </div>
+      </div>
+
+      <div class="band" style="background:var(--green)">
+        <div class="bt" style="color:#000">Agency ops · Startup advisory · Own brand. All three sides.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATIVE WORK -->
+  <div class="window t-purple" id="win-creative">
+    <div class="win-bar">
+      <span class="win-title">CREATIVE_WORK.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--purple)">Visual Range</div>
+      <div class="big-title" style="color:var(--purple)">CREATIVE<br>WORK</div>
+      <div class="body-text">OOH campaigns, event communication, pharma creatives, B2B event assets. One skillset adapted across quick commerce, healthcare, and high-net-worth investor audiences.</div>
+
+      <div class="eyebrow" style="color:var(--purple);margin-bottom:8px">OOH & CAMPAIGN CREATIVES</div>
+      <div class="img-grid" style="margin-bottom:16px">
+        <img src="OOH&CC_1.jpeg" alt="OOH Billboard Campaign" style="grid-column:1/-1;height:160px;object-fit:contain;background:#111;">
+        <img src="OOH&CC_2.jpeg" alt="Multi-brand OOH Strip" style="height:110px;object-fit:contain;background:#111;">
+        <img src="OOH&CC_3.jpeg" alt="Festive OOH Billboard" style="height:110px;object-fit:contain;background:#111;">
+        <img src="OOH&CC_4.jpeg" alt="Street Installation" style="grid-column:1/-1;height:150px;object-fit:contain;background:#111;">
+      </div>
+
+      <div class="eyebrow" style="color:var(--purple);margin-bottom:8px">PHARMA & HEALTHCARE</div>
+      <div class="img-grid" style="margin-bottom:16px">
+        <img src="P&H_1.jpeg" alt="CPHI Frankfurt Event" style="height:120px;object-fit:contain;background:#111;">
+        <img src="P&H_2.jpeg" alt="Healthcare Brand Creative" style="height:120px;object-fit:contain;background:#111;">
+      </div>
+
+      <div class="eyebrow" style="color:var(--purple);margin-bottom:8px">B2B EVENT MARKETING</div>
+      <div class="img-grid" style="margin-bottom:16px">
+        <img src="B2B_1.webp" alt="Riyadh Investment Event" style="height:120px;object-fit:contain;background:#111;">
+        <img src="B2B_2.jpeg" alt="Private Investor Dinner Abu Dhabi" style="height:120px;object-fit:contain;background:#111;">
+      </div>
+
+      <div class="band" style="background:rgba(191,95,255,0.15); border:1px solid rgba(191,95,255,0.3)">
+        <div class="bt" style="color:var(--purple)">OOH · Pharma · B2B Events · Social · Pitch Decks</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUME & SKILLS -->
+  <div class="window t-red" id="win-resume">
+    <div class="win-bar">
+      <span class="win-title">RESUME_&_SKILLS.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--red)">Full Timeline</div>
+      <div class="big-title" style="color:var(--red)">RESUME &<br>SKILLS</div>
+
+      <div class="eyebrow" style="color:var(--red);margin-bottom:8px">Experience</div>
+      <div class="rline">
+        <div>
+          <div class="rl-title">Marketing Executive</div>
+          <div class="rl-co">TROY GROUPS · Mumbai</div>
+        </div>
+        <div class="rl-date">Oct 2025<br>Present</div>
+      </div>
+      <div class="rline">
+        <div>
+          <div class="rl-title">Digital Marketing Intern</div>
+          <div class="rl-co">OPTIMINASTIC · Mumbai</div>
+        </div>
+        <div class="rl-date">May–Sep<br>2025</div>
+      </div>
+      <div class="rline">
+        <div>
+          <div class="rl-title">Social Media Content Strategist</div>
+          <div class="rl-co">CNBC NEWS18 · Mumbai</div>
+        </div>
+        <div class="rl-date">Jan–Apr<br>2025</div>
+      </div>
+
+      <div style="height:14px"></div>
+      <div class="eyebrow" style="color:var(--red);margin-bottom:8px">Education</div>
+      <div class="rline">
+        <div>
+          <div class="rl-title">BMS (Major: Marketing)</div>
+          <div class="rl-co">Thakur College of Science & Commerce</div>
+        </div>
+        <div class="rl-date">2023<br>2026</div>
+      </div>
+
+      <div style="height:14px"></div>
+      <div class="eyebrow" style="color:var(--red);margin-bottom:8px">Certifications</div>
+      <div class="chips" style="margin-bottom:16px">
+        <div class="chip" style="border-color:rgba(255,68,68,0.3);color:var(--red)">Meta Social Media Marketing</div>
+        <div class="chip" style="border-color:rgba(255,68,68,0.3);color:var(--red)">Canva Design School</div>
+        <div class="chip" style="border-color:rgba(255,68,68,0.3);color:var(--red)">Startup India · Govt of India</div>
+      </div>
+
+      <div style="height:6px"></div>
+      <div class="eyebrow" style="color:var(--red);margin-bottom:10px">Skills</div>
+
+      <div class="skill-group">
+        <div class="sg-label" style="color:var(--red)">Campaign Management</div>
+        <div class="chips">
+          <div class="chip">Campaign Planning</div>
+          <div class="chip">Content Calendars</div>
+          <div class="chip">Platform Coordination</div>
+          <div class="chip">Reporting</div>
+          <div class="chip">Go-to-market</div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-label" style="color:var(--red)">Brand Solutions</div>
+        <div class="chips">
+          <div class="chip">Brand Positioning</div>
+          <div class="chip">Creative Strategy</div>
+          <div class="chip">Pitch Decks</div>
+          <div class="chip">Brand Voice</div>
+          <div class="chip">Content Strategy</div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-label" style="color:var(--red)">Social Media Strategy</div>
+        <div class="chips">
+          <div class="chip">Instagram</div>
+          <div class="chip">LinkedIn</div>
+          <div class="chip">Reels Planning</div>
+          <div class="chip">Organic Growth</div>
+          <div class="chip">Meta Business Suite</div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-label" style="color:var(--red)">Influencer Marketing</div>
+        <div class="chips">
+          <div class="chip">Creator Outreach</div>
+          <div class="chip">Brief Development</div>
+          <div class="chip">Brand Fit Evaluation</div>
+          <div class="chip">Campaign Coordination</div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-label" style="color:var(--red)">Digital Marketing</div>
+        <div class="chips">
+          <div class="chip">Google Ads</div>
+          <div class="chip">Meta Ads Manager</div>
+          <div class="chip">SEO/SEM</div>
+          <div class="chip">GA4</div>
+          <div class="chip">DV360 (learning)</div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="sg-label" style="color:var(--red)">Tools & Creative</div>
+        <div class="chips">
+          <div class="chip">Canva</div>
+          <div class="chip">Adobe Express</div>
+          <div class="chip">Google Workspace</div>
+          <div class="chip">Excel/Sheets</div>
+          <div class="chip">Copywriting</div>
+        </div>
+      </div>
+
+      <a class="resume-btn" href="https://drive.google.com/your-resume-link" target="_blank" style="margin-top:10px;display:inline-flex">↓ DOWNLOAD RESUME PDF</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="window t-yellow" id="win-contact">
+    <div class="win-bar">
+      <span class="win-title">CONTACT.EXE</span>
+      <button class="win-x" onclick="closeWindow()">✕</button>
+    </div>
+    <div class="win-body">
+      <div class="eyebrow" style="color:var(--yellow)">Reach Out</div>
+      <div class="big-title" style="color:var(--yellow)">LET'S<br>TALK</div>
+      <div class="body-text">Open for opportunities in campaign management, brand solutions, digital marketing, influencer marketing, and social media. Full-time, graduate trainee, or the right internship.</div>
+
+      <a class="clink" style="border-color:rgba(255,229,0,0.2)" href="mailto:tanushshah1404@gmail.com">
+        <div>
+          <div class="cl-name" style="color:var(--yellow)">EMAIL</div>
+          <div class="cl-sub">tanushshah1404@gmail.com</div>
+        </div>
+        <div class="cl-arr">→</div>
+      </a>
+
+      <a class="clink" style="border-color:rgba(0,245,255,0.2)" href="tel:8652223193">
+        <div>
+          <div class="cl-name" style="color:var(--cyan)">PHONE</div>
+          <div class="cl-sub">+91 86522 23193</div>
+        </div>
+        <div class="cl-arr">→</div>
+      </a>
+
+      <a class="clink" style="border-color:rgba(255,60,172,0.2)" href="https://www.linkedin.com/in/tanush-shah-33b81a196" target="_blank">
+        <div>
+          <div class="cl-name" style="color:var(--pink)">LINKEDIN</div>
+          <div class="cl-sub">linkedin.com/in/tanush-shah-33b81a196</div>
+        </div>
+        <div class="cl-arr">→</div>
+      </a>
+
+      <div class="band" style="background:var(--yellow);margin-top:6px">
+        <div class="bt" style="color:#000">Open for opportunities · Available now</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // On desktop, wrap elements into sidebar + main layout
+  function setupDesktopLayout() {
+    if (window.innerWidth < 1024) return;
+    if (document.getElementById('sidebar-left')) return;
+
+    const desktop = document.getElementById('desktop');
+    const overlay = document.getElementById('overlay');
+
+    // Create sidebar
+    const sidebar = document.createElement('div');
+    sidebar.id = 'sidebar-left';
+
+    // Move elements into sidebar
+    const elements = ['topbar','hero','stats','contact-bar','grid-label','icon-grid','taskbar'];
+    elements.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sidebar.appendChild(el);
+    });
+
+    // Create main right area
+    const mainRight = document.createElement('div');
+    mainRight.id = 'main-right';
+    mainRight.appendChild(overlay);
+
+    desktop.appendChild(sidebar);
+    desktop.appendChild(mainRight);
+  }
+
+  // Run on load and resize
+  setupDesktopLayout();
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && !document.getElementById('sidebar-left')) {
+      setupDesktopLayout();
+    }
+  });
+
+  function updateClock() {
+    const n = new Date();
+    document.getElementById('clock').textContent =
+      String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  function openWindow(id) {
+    closeWindow(true);
+    const overlay = document.getElementById('overlay');
+    const win = document.getElementById('win-' + id);
+    if (!win) return;
+    overlay.style.display = 'flex';
+    requestAnimationFrame(() => win.classList.add('active'));
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeWindow(silent) {
+    document.getElementById('overlay').style.display = 'none';
+    document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('overlay')) closeWindow();
+  }
+
+  document.querySelectorAll('.window').forEach(w => {
+    w.addEventListener('click', e => e.stopPropagation());
+  });
+</script>
+</body>
+</html>
